@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkpoint System.CSharp.Plugins", "Checkpoint System.CSharp.Plugins.csproj", "{DF9359E4-E584-6EF0-E739-1288011DB4C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkpoint System.CSharp", "Checkpoint System.CSharp.csproj", "{217B0E71-2315-6DE4-7910-2F908DA1D88D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkpoint System.CSharp.Editor", "Checkpoint System.CSharp.Editor.csproj", "{C05FB8C3-8F3F-AEE7-E8F2-3847C97E63FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF9359E4-E584-6EF0-E739-1288011DB4C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF9359E4-E584-6EF0-E739-1288011DB4C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF9359E4-E584-6EF0-E739-1288011DB4C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF9359E4-E584-6EF0-E739-1288011DB4C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{217B0E71-2315-6DE4-7910-2F908DA1D88D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{217B0E71-2315-6DE4-7910-2F908DA1D88D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{217B0E71-2315-6DE4-7910-2F908DA1D88D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{217B0E71-2315-6DE4-7910-2F908DA1D88D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C05FB8C3-8F3F-AEE7-E8F2-3847C97E63FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C05FB8C3-8F3F-AEE7-E8F2-3847C97E63FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C05FB8C3-8F3F-AEE7-E8F2-3847C97E63FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C05FB8C3-8F3F-AEE7-E8F2-3847C97E63FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
