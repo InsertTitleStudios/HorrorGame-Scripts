@@ -25,8 +25,8 @@ GameObject:
   - 23: {fileID: 23000013018051788}
   m_Layer: 0
   m_Name: Checkpoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_TagString: Checkpoint
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -92,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelManager: {fileID: 0}
   _currentMatches: 3
+  inZone: 0
 --- !u!135 &135000013298080758
 SphereCollider:
   m_ObjectHideFlags: 1
