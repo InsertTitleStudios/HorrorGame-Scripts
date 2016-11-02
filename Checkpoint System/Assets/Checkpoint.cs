@@ -13,22 +13,40 @@ public class Checkpoint : MonoBehaviour {
 
     // Update is called once per frame
     void Update ()
-    { if (Input.GetKeyDown(KeyCode.F) && inZone)
-        { if (_currentMatches >= 1)
+    { if (Input.GetKeyDown(KeyCode.F) && inZone && levelManager.currentCheckpoint != gameObject)
+        {
+            //Debug.Log("New Checkpoint found. Press F to activate it");
+            if (_currentMatches >= 1)
             { levelManager.currentCheckpoint = gameObject;
               Debug.Log("Activated Checkpoint" + transform.position); //Add gui label text display "CheckPoint activated"
               _currentMatches--;
-                Debug.Log("You have this many matches left");
-                print(_currentMatches); }
+                Debug.Log("You have this many matches left: " + _currentMatches);
+                //print(_currentMatches);
+            }
 
           else if (_currentMatches <=0)
             { _currentMatches = 0;
-             Debug.Log("You have no matches go collect matches"); }}} // put code for when player has no matches - GUI Lavel text display "Find Matches to activate checkpoint"
+             Debug.Log("You have no matches go collect matches"); }
+        }
+    if (inZone && levelManager.currentCheckpoint != gameObject)
+        {
+            Debug.Log("New Checkpoint found. Press F to activate it");
+        }
+    if (inZone && levelManager.currentCheckpoint != gameObject && _currentMatches == 0)
+        {
+            Debug.Log("You have no matches to activate this checkpoint. Please find some");
+        }
+    }
+    // put code for when player has no matches - GUI Lavel text display "Find Matches to activate checkpoint"
     
     public void OnTriggerEnter(Collider other)  
     { if (other.name == "Player")
         { inZone = true;
-         /* Debug.Log("In checkpoint zone press f to activate");*/ }}
+            if (levelManager.currentCheckpoint == gameObject)
+            {
+                Debug.Log("Can't activate this checkpoint again");
+            }
+          /*Debug.Log("In checkpoint zone press f to activate"); */}}
 
     public void OnTriggerExit(Collider other)
     { if (other.name == "Player")
@@ -37,19 +55,9 @@ public class Checkpoint : MonoBehaviour {
 
     public void AddMatches (int _matchesAmount) //haven't setup adding matches to current total as of yet -- Only updates checkpoint (1) never updates original checkpoint
     { _currentMatches += _matchesAmount;
-        Debug.Log("You have added this match to your amount");
-        print(_matchesAmount);
-        Debug.Log("You have now this amount of matches");
-        print(_currentMatches); }
-
-    public void CheckCheckPoint()
-    {
-        // If player is in a checkpoint make it so they can't activate that particular checkpoint again until they've changed to a new checkpoint.
-    }
+        Debug.Log("You have added this match to your amount: " + _matchesAmount);
+        //print(_matchesAmount);
+        Debug.Log("You have now this amount of matches: " + _currentMatches);
+        /*print(_currentMatches);*/ }
 
 }
-
-
-//Switches checkpoints fine matches deduct fine however each checkpoints seems to have a virtual amount and subtracts from that amount instead of updating the main total
-//i.e checkpoint 1 & 2 have 3 matches total what should happen is player walks into checkpoint 1, presses f and it subtracts 1 match currentmatches variable by 1 e.g. 3 - 1 = 2 and there will be 2 matches that can only be used in checkpoints
-//what instead is happening is: player walks into checkpoint 1 preses f. subtracts 1 match from checkpoint total 3-1 = 2 however checkpoint 2 still has a total of 3 & when palyer interacts with checkpoint 2 it will subtract match from there and not update amount of matches

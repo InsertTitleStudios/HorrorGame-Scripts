@@ -6,7 +6,6 @@ public class LevelManager : MonoBehaviour {
 
     public GameObject currentCheckpoint;   
     private FirstPersonController player;
-  //  public static int _MatchesAmount = 3; 
 
     void Start ()
     { player = FindObjectOfType<FirstPersonController>(); }
