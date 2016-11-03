@@ -5,20 +5,34 @@ public class PickUpMatches : MonoBehaviour
 {
     public int _matchesAmount = 1;
     public bool inZone = false;
+    public float range = 100f;
+
+    public 
 
     void OnTriggerEnter(Collider mat)
     { if (mat.tag == "Player")
-        { inZone = true; }}
+        { inZone = true; } }
 
     void OnTriggerExit(Collider mat)
-    { if (mat.tag =="Player")
-        { inZone = false; }}
+    { if (mat.tag == "Player")
+        { inZone = false; } }
 
     void Update()
     { if (Input.GetKeyDown(KeyCode.E) && inZone)
-        { Checkpoint temp = GameObject.FindGameObjectWithTag("Checkpoint").
-                GetComponentInChildren<Checkpoint>();
-            temp.AddMatches(_matchesAmount);
-            Destroy(gameObject); }}}
+        {
+            
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit, range))
+            {
+                Debug.Log("You are casting a ray");
+                Debug.DrawLine(ray.direction, hit.point, Color.red);
+            
+             //   Debug.DrawLine(hit.point, )
+                Checkpoint temp = GameObject.FindGameObjectWithTag("Checkpoint").
+                    GetComponentInChildren<Checkpoint>();
+                temp.AddMatches(_matchesAmount);
+                Destroy(gameObject); } } } }
 
 	
