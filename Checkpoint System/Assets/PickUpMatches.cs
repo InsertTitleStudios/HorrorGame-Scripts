@@ -28,8 +28,8 @@ public class PickUpMatches : MonoBehaviour
             {
                 Debug.Log("You are casting a ray");
                 Debug.DrawLine(ray.direction, hit.point, Color.red);
-            
-             //   Debug.DrawLine(hit.point, )
+
+                //Debug.DrawLine(hit.point, Color.red);
                 Checkpoint temp = GameObject.FindGameObjectWithTag("Checkpoint").
                     GetComponentInChildren<Checkpoint>();
                 temp.AddMatches(_matchesAmount);
