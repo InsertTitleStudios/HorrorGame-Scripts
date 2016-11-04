@@ -8,6 +8,15 @@ public class Checkpoint : MonoBehaviour {
     public bool inZone = false;
     public Text matches_text;
     public Text _HUD_Text;
+    public Transform _CandleFlame;
+
+    void Awake()
+    {
+        if (levelManager.currentCheckpoint == gameObject)
+        {
+            _CandleFlame.GetComponent<ParticleSystem>().emission.enabled = true; // Fix this <--
+        }
+    }
 
     void Start()
     { levelManager = FindObjectOfType<LevelManager>();
@@ -18,6 +27,7 @@ public class Checkpoint : MonoBehaviour {
     { if (Input.GetKeyDown(KeyCode.F) && inZone && levelManager.currentCheckpoint != gameObject)
         { if (_currentMatches >= 1)
             { levelManager.currentCheckpoint = gameObject;
+                // _CandleFlame.e  <--- Do the same here as Awake function. Set the flame to change to different checkpoint on activation.
               Debug.Log("Activated Checkpoint" + transform.position);
               _currentMatches--;
               matches_text.text = "X " + _currentMatches;
