@@ -234,7 +234,7 @@ GameObject:
   - 23: {fileID: 23000013542298892}
   - 135: {fileID: 135000013146722490}
   m_Layer: 0
-  m_Name: Matchbox with matchs
+  m_Name: Matchbox
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
