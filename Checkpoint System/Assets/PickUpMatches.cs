@@ -18,21 +18,10 @@ public class PickUpMatches : MonoBehaviour
         { inZone = false; } }
 
     void Update()
-    { if (Input.GetKeyDown(KeyCode.E) && inZone)
-        {
-            
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit, range))
-            {
-                Debug.Log("You are casting a ray");
-                Debug.DrawLine(ray.direction, hit.point, Color.red);
-
-                //Debug.DrawLine(hit.point, Color.red);
-                Checkpoint temp = GameObject.FindGameObjectWithTag("Checkpoint").
-                    GetComponentInChildren<Checkpoint>();
-                temp.AddMatches(_matchesAmount);
-                Destroy(gameObject); } } } }
+    { if (Input.GetKeyDown(KeyCode.E) && inZone) //if (inZone)
+        { Checkpoint temp = GameObject.FindGameObjectWithTag("Checkpoint").
+          GetComponentInChildren<Checkpoint>();
+          temp.AddMatches(_matchesAmount);
+          Destroy(gameObject); }}}
 
 	

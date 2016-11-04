@@ -1,74 +1,115 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-public class Checkpoint : MonoBehaviour {
-
-    public LevelManager levelManager;
+public class Checkpoint : MonoBehaviour
+{
     public static int _currentMatches = 3;
+    private float speed = 1f;
+
     public bool inZone = false;
+    private bool triggered = false;
+
     public Text matches_text;
     public Text _HUD_Text;
-    public Transform _CandleFlame;
+    public CanvasGroup canvasGroup = null;
 
-    void Awake()
+    public LevelManager levelManager;
+
+    // public GameObject _CandleFlame;
+
+    void Start()
     {
-        if (levelManager.currentCheckpoint == gameObject)
+        levelManager = FindObjectOfType<LevelManager>();
+        matches_text.text = "X " + _currentMatches;
+        _HUD_Text.text = " ";
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F) && inZone && levelManager.currentCheckpoint != gameObject)
         {
-            _CandleFlame.GetComponent<ParticleSystem>().emission.enabled = true; // Fix this <--
+            StopCoroutine("Opacity");
+            triggered = false;
+            if (_currentMatches >= 1)
+            {
+                levelManager.currentCheckpoint = gameObject;
+                //      _CandleFlame.GetComponent<ParticleSystem>().Emit(100);      
+                _currentMatches--;
+                matches_text.text = "X " + _currentMatches;
+                StartCoroutine("Opacity");
+                _HUD_Text.text = "Checkpoint Activated";
+            }
+            else if (_currentMatches <= 0)
+            { _currentMatches = 0; }
+        }
+        if (inZone && levelManager.currentCheckpoint != gameObject)
+        {
+            _HUD_Text.text = "Checkpoint Discovered \nPress F to activate";
+            StartCoroutine("Opacity");
+            //  _CandleFlame.GetComponent<ParticleSystem>().Emit(0);
+        }
+        if (inZone && levelManager.currentCheckpoint != gameObject && _currentMatches == 0)
+        {
+            _HUD_Text.text = "No Matches To Activate Checkpoint \nGo Find Some";
+            StartCoroutine("Opacity");
+        }
+    }
+    IEnumerator Opacity()
+    {
+        if (!triggered)
+        {
+            triggered = true;
+            if (canvasGroup.alpha == 1)
+            {
+                canvasGroup.alpha = 0;
+            }
+
+            yield return FadeIn();
+
+            yield return new WaitForSeconds(1f);
+
+            yield return FadeOut();
+
+            triggered = false;
         }
     }
 
-    void Start()
-    { levelManager = FindObjectOfType<LevelManager>();
-        matches_text.text = "X " + _currentMatches;
-        _HUD_Text.text = " "; }
+    IEnumerator FadeIn()
+    {
+        while (canvasGroup.alpha < 1)
+        {
+            canvasGroup.alpha += Time.deltaTime * speed;
+            yield return null;
+        }
+    }
 
-    void Update ()
-    { if (Input.GetKeyDown(KeyCode.F) && inZone && levelManager.currentCheckpoint != gameObject)
-        { if (_currentMatches >= 1)
-            { levelManager.currentCheckpoint = gameObject;
-                // _CandleFlame.e  <--- Do the same here as Awake function. Set the flame to change to different checkpoint on activation.
-              Debug.Log("Activated Checkpoint" + transform.position);
-              _currentMatches--;
-              matches_text.text = "X " + _currentMatches;
-              _HUD_Text.text = "Checkpoint Activated"; // - Make this animated to show for 3 seconds 1.5 seconds 0 opacity to full & 1.5 seconds full opacity to 0.
-              //_HUD_Text.text = " ";
-              GetComponent<Animation>().Play("_ActivateCheckpoint");
-              Debug.Log("You have this many matches left: " + _currentMatches); }
-
-          else if (_currentMatches <=0)
-            { _currentMatches = 0;
-              Debug.Log("You have no matches go collect matches"); }}
-
-    if (inZone && levelManager.currentCheckpoint != gameObject)
-        { _HUD_Text.text = "Checkpoint Discovered \nPress F to activate"; // - Make this animated to show for 3 seconds 1.5 seconds 0 opacity to full & 1.5 seconds full opacity to 0.
-           // _HUD_Text.text = " ";
-            GetComponent<Animation>().Play("_Checkpoint Discovered");
-            Debug.Log("New Checkpoint found. Press F to activate it"); }
-
-    if (inZone && levelManager.currentCheckpoint != gameObject && _currentMatches == 0)
-        { _HUD_Text.text = "No Matches To Activate Checkpoint \nGo Find Some"; // - Make this animated to show for 3 seconds 1.5 seconds 0 opacity to full & 1.5 seconds full opacity to 0.
-           // _HUD_Text.text = " ";
-            GetComponent<Animation>().Play("_CheckpointNoMatches");
-            Debug.Log("You have no matches to activate this checkpoint. Please find some"); }}
-        
-    public void OnTriggerEnter(Collider other)  
-    { if (other.name == "Player")
-        { inZone = true;
+    IEnumerator FadeOut()
+    {
+        while (canvasGroup.alpha > 0)
+        {
+            canvasGroup.alpha -= Time.deltaTime * speed;
+            yield return null;
+        }
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.name == "Player")
+        {
+            inZone = true;
             if (levelManager.currentCheckpoint == gameObject)
-            { _HUD_Text.text = "Can't Activate Checkpoint Again"; // - Make this animated to show for 3 seconds 1.5 seconds 0 opacity to full & 1.5 seconds full opacity to 0.
-                GetComponent<Animation>().Play("_UnActivateCheckpoint");
-                Debug.Log("Can't activate this checkpoint again"); }
-
-            else
-            {/* _HUD_Text.text = " ";*/ }
-          /*Debug.Log("In checkpoint zone press f to activate"); */}}
-
+            {
+                _HUD_Text.text = "Can't Activate Checkpoint Again";
+                StartCoroutine(Opacity());
+            } 
+        }
+    }
     public void OnTriggerExit(Collider other)
-    { if (other.name == "Player")
-        { inZone = false; }}
-
-    public void AddMatches (int _matchesAmount) 
-    { _currentMatches += _matchesAmount;
-        Debug.Log("You have added this match to your amount: " + _matchesAmount);
-        Debug.Log("You have now this amount of matches: " + _currentMatches); }}
+    {
+        if (other.name == "Player")
+        { inZone = false; }
+    }
+    public void AddMatches(int _matchesAmount)
+    {
+        _currentMatches += _matchesAmount;
+        matches_text.text = "X " + _currentMatches;
+    }
+}
