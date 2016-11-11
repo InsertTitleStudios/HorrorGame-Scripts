@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692492, g: 0.4967869, b: 0.57508546, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692558, g: 0.49678743, b: 0.57508624, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -196,12 +196,20 @@ Prefab:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -4.64
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &546859967 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+  m_PrefabInternal: {fileID: 148464039}
+--- !u!4 &546859968 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   m_PrefabInternal: {fileID: 148464039}
 --- !u!114 &546859971
 MonoBehaviour:
@@ -214,8 +222,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa87aadc35df5543b41ad0207fcecc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _switch: {fileID: 0}
-  _batteryPickUp: {fileID: 0}
   _maximumBatteryPower: 100
   _currentBatteryPower: 0
   _lowPowerIntensityMode: 3
@@ -227,6 +233,8 @@ MonoBehaviour:
   _lowDrainBatterySpeed: 2.5
   _highDrainBatterySpeed: 5
   _batteryBarLength: 0
+  _maxFlickerSpeed: 1
+  _minFlickerSpeed: 0.1
 --- !u!1 &781493871
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,7 +323,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1259142912}
   - 108: {fileID: 1259142914}
-  - 114: {fileID: 1259142913}
   m_Layer: 0
   m_Name: Spotlight
   m_TagString: Untagged
@@ -329,38 +336,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1259142911}
-  m_LocalRotation: {x: 0.0028448447, y: 0, z: 0, w: 0.99999595}
+  m_LocalRotation: {x: 0.0028448447, y: -0, z: -0, w: 0.99999595}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.0001358, y: 1, z: 1.0001359}
   m_LocalEulerAnglesHint: {x: 0.326, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 1264210801}
-  m_RootOrder: 1
---- !u!114 &1259142913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1259142911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29bdcbc0d6d9c8c4595f5129ee433545, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashlight: {fileID: 0}
-  _switch: {fileID: 0}
-  _batteryPickUp: {fileID: 0}
-  _maximumBatteryPower: 100
-  _currentBatteryPower: 0
-  _lowPowerIntensityMode: 3
-  _lowPowerSpotAngle: 40
-  _lowPowerRange: 20
-  _highPowerIntensityMode: 6
-  _highPowerSpotAngle: 20
-  _highPowerRange: 30
-  _lowDrainBatterySpeed: 2.5
-  _highDrainBatterySpeed: 5
-  _batteryBarLength: 0
+  m_Father: {fileID: 546859968}
+  m_RootOrder: 0
 --- !u!108 &1259142914
 Light:
   m_ObjectHideFlags: 0
@@ -395,10 +377,6 @@ Light:
   m_BounceIntensity: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!4 &1264210801 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-  m_PrefabInternal: {fileID: 148464039}
 --- !u!1 &1491352209
 GameObject:
   m_ObjectHideFlags: 0

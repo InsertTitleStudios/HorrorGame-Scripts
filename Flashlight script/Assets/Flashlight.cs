@@ -4,8 +4,8 @@ using System.Collections;
 public class Flashlight : MonoBehaviour
 {
     private Light flashlight;
-    public AudioClip _switch;
-    public AudioClip _batteryPickUp;
+    //public AudioClip _switch;
+   // public AudioClip _batteryPickUp;
 
     public int _maximumBatteryPower = 100;
     public float _currentBatteryPower = 0f;
@@ -38,9 +38,9 @@ public class Flashlight : MonoBehaviour
 	void Update ()
     { _batteryBarLength = (Screen.width / 4) * (_currentBatteryPower / (float) _maximumBatteryPower);
 
-        if (Input.GetButtonDown("Flashlight"))
-        { GetComponent<AudioSource>().PlayOneShot(_switch);
-            flashlight.enabled = !flashlight.enabled; }
+       // if (Input.GetButtonDown("Flashlight"))
+      //  { //GetComponent<AudioSource>().PlayOneShot(_switch);
+            //flashlight.enabled = !flashlight.enabled; }
 
         if (flashlight.enabled)
         { FlashlightOn(); }
@@ -90,10 +90,11 @@ public class Flashlight : MonoBehaviour
         if (_currentBatteryPower >= _maximumBatteryPower)
         { _currentBatteryPower = _maximumBatteryPower; }
 
-        if (_batteryPickUp != null)
-        { GetComponent<AudioSource>().clip = _batteryPickUp;
-            GetComponent<AudioSource>().Play(); }}
+        // if (_batteryPickUp != null)
+        //{ GetComponent<AudioSource>().clip = _batteryPickUp;
+        //  GetComponent<AudioSource>().Play(); }}
 
-    void OnGUI()           // Change this to latest GUI in unity
-    { GUI.Box(new Rect(5, 35, _batteryBarLength, 20), "Battery"); }
+        //void OnGUI()           // Change this to latest GUI in unity
+        //{ GUI.Box(new Rect(5, 35, _batteryBarLength, 20), "Battery"); 
+    }
 }
