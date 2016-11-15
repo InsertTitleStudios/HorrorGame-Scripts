@@ -15,14 +15,11 @@ public class Checkpoint : MonoBehaviour
 
     public LevelManager levelManager;
 
-    //public GameObject _CandleFlame;
-
     void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
         matches_text.text = "X " + _currentMatches;
         _HUD_Text.text = " ";
-        levelManager.currentCheckpoint.GetComponentInChildren<ParticleSystem>().Emit(0);
     }
     void Update()
     {
@@ -33,7 +30,8 @@ public class Checkpoint : MonoBehaviour
             if (_currentMatches >= 1)
             {
                 levelManager.currentCheckpoint = gameObject;
-                //gameObject.GetComponentInChildren<ParticleSystem>().Emit(100); // change emission rate to 100 for current checkpoint
+                gameObject.GetComponentInChildren<ParticleSystem>().Play();
+                gameObject.GetComponentInChildren<Light>().enabled = true;
                 _currentMatches--;
                 matches_text.text = "X " + _currentMatches;
                 StartCoroutine("Opacity");
@@ -46,7 +44,12 @@ public class Checkpoint : MonoBehaviour
         {
             _HUD_Text.text = "Checkpoint Discovered \nPress F to activate";
             StartCoroutine("Opacity");
-          //  gameObject.GetComponentInChildren<ParticleSystem>().Emit(0); // if not current checkpoint set emission rate to 0 until it has been activated 
+        }
+
+        if (!inZone && levelManager.currentCheckpoint != gameObject)
+        {
+            gameObject.GetComponentInChildren<ParticleSystem>().Stop();
+            gameObject.GetComponentInChildren<Light>().enabled = false;
         }
         if (inZone && levelManager.currentCheckpoint != gameObject && _currentMatches == 0)
         {
