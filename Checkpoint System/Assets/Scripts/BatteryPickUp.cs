@@ -5,24 +5,25 @@ public class BatteryPickUp : MonoBehaviour
 {
 
     public int _batteryPowerAmount = 50;
-    public bool inZone = false;
+    public RayCast_Pickup_Items item;
 
-    void OnTriggerExit(Collider mat)
+
+    void Start()
     {
-        if (mat.tag == "Player")
-        { inZone = false; }
+        item = FindObjectOfType<RayCast_Pickup_Items>();
     }
 
-    void OnTriggerEnter(Collider mat)
+    void OnTriggerStay(Collider mat)
     {
         if (mat.tag == "Player")
-        { inZone = true; }
+        {
+            item.canHover = true;
+        }
+        else if (mat.tag != "Player")
+        {
+            item.canHover = false;
+        }
     }
-
-    void Update()
-    { }
-
-
 
     public void AddBatteries()
     {

@@ -5,21 +5,22 @@ using UnityEngine.UI;
 public class PickUpMatches : MonoBehaviour
 {
     public int _matchesAmount = 1;
-    public bool inZone = false;
+    public RayCast_Pickup_Items item;
 
-  void OnTriggerEnter(Collider mat)
+    void Start()
     {
-        if (mat.tag == "Player")
-        {
-            inZone = true;
-        }
+        item = FindObjectOfType<RayCast_Pickup_Items>();
     }
 
-    void OnTriggerExit(Collider mat)
+    void OnTriggerStay(Collider mat)
     {
         if (mat.tag == "Player")
         {
-              inZone = false;
+            item.canHover = true;
+        }
+        else if (mat.tag != "Player")
+        {
+            item.canHover = false;
         }
     }
 
@@ -30,6 +31,8 @@ public class PickUpMatches : MonoBehaviour
         temp.AddMatches(_matchesAmount);
         Destroy(gameObject);
     }
+
+
 }
 
 	
