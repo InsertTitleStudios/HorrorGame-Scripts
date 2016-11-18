@@ -3,7 +3,9 @@ using System.Collections;
 using UnityEngine.UI;
 public class Checkpoint : MonoBehaviour
 {
+
     public static int _currentMatches = 3;
+    public int tempMatches;
     private float speed = 1f;
 
     public bool inZone = false;
@@ -14,6 +16,7 @@ public class Checkpoint : MonoBehaviour
     public CanvasGroup canvasGroup = null;
 
     public LevelManager levelManager;
+    public bool respawn = false;
 
     void Start()
     {
@@ -23,6 +26,7 @@ public class Checkpoint : MonoBehaviour
     }
     void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.F) && inZone && levelManager.currentCheckpoint != gameObject)
         {
             StopCoroutine("Opacity");
@@ -33,7 +37,18 @@ public class Checkpoint : MonoBehaviour
                 gameObject.GetComponentInChildren<ParticleSystem>().Play();
                 gameObject.GetComponentInChildren<Light>().enabled = true;
                 _currentMatches--;
+                
+                tempMatches = _currentMatches;
                 matches_text.text = "X " + _currentMatches;
+                if (respawn == true)
+                {
+                    Debug.Log("Just respawned");
+                    _currentMatches = tempMatches;
+                    Debug.Log("Number of matches is:" + _currentMatches);
+                    matches_text.text = "X " + _currentMatches;
+                    respawn = false;
+                }
+
                 StartCoroutine("Opacity");
                 _HUD_Text.text = "Checkpoint Activated";
             }

@@ -9,7 +9,8 @@ public class KillPlayer : MonoBehaviour {
     private int largeEnemyDamage = 30;
 
     void Start()
-    { levelManager = FindObjectOfType<LevelManager>(); }
+    {
+        levelManager = FindObjectOfType<LevelManager>(); }
 	
 	void Update ()
     { if (playerHealth <= 0)
