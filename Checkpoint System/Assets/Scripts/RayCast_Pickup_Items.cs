@@ -3,11 +3,12 @@ using System.Collections;
 
 public class RayCast_Pickup_Items : MonoBehaviour {
 
-	private float range = 300f;
+	private float range = 500f;
     public PickUpMatches _Matchbox;
     public GameObject _HandImage;
     public GameObject _CrossHairImage;
     public BatteryPickUp _Battery;
+   // public Crosshair_Manager manager;
     public bool canHover = false;
    
 
@@ -15,57 +16,48 @@ public class RayCast_Pickup_Items : MonoBehaviour {
     void Update()
     {
         _Matchbox = FindObjectOfType<PickUpMatches>();
-        RaycastHit fireHit;
         RaycastHit hoverHit;
-       Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-       // Ray ray = Camera.main.ViewportPointToRay(new Vector3(0f, 0.5f, 0.0f));
+        Ray ray = Camera.main.ViewportPointToRay(new Vector2(.5f, .5f));
 
         if (Physics.Raycast(ray, out hoverHit, range))
         {
-            Debug.DrawRay(ray.direction, hoverHit.point, Color.green);
+            Debug.DrawRay(ray.origin, ray.direction, Color.green);
 
             if (canHover == true)
             {
-                // Debug.Log("canHover is true");
-                if (hoverHit.collider.tag == "MatchBox") //|| hoverHit.collider.tag == "Battery")
+                Debug.Log("canHover is true");
+                if (hoverHit.collider.tag == "MatchBox" || hoverHit.collider.tag == "Battery")
                 {
                     Debug.Log("I'm looking at matchbox");
                     _HandImage.SetActive(true);
                     _CrossHairImage.SetActive(false);
+
+
+                    if (Input.GetButton("Fire1"))
+                    {
+                        if (hoverHit.collider.tag == "Matchbox")
+                            {
+                                _Matchbox.AddMatch();
+                            }
+                        else if (hoverHit.collider.tag == "Battery")
+                            {
+                                _Battery.AddBatteries();
+                            }
+                        }
+                    }
+
+                else if (hoverHit.collider.tag != "MatchBox" || hoverHit.collider.tag != "Battery")
+                {
+                    Debug.Log("I'm looking at nothing");
+                    _HandImage.SetActive(false);
+                    _CrossHairImage.SetActive(true);
                 }
             }
             else
             {
-             //   Debug.Log("Not looking at anything");
-            }
-             //   else if (hoverHit.collider.tag != "MatchBox" || hoverHit.collider.tag != "Battery")
-               // {
-                 //   Debug.Log("not looking at anything");
-                   // _HandImage.SetActive(false);
-                   // _CrossHairImage.SetActive(true);
-                //}
-            
-        }
-
-        if (Input.GetButton("Fire1"))
-        {
-            if (Physics.Raycast(ray, out fireHit, range))
-            {
-                Debug.DrawRay(ray.direction, fireHit.point, Color.red);
-
-                if (fireHit.collider.tag == "Matchbox")
-                {
-                    _Matchbox.AddMatch();
-                }
-
-                else if (fireHit.collider.tag == "Battery")
-                {
-                    _Battery.AddBatteries();
-                }
-
-                Debug.Log(fireHit.transform.name);
-            }
+                canHover = false;
+                Debug.Log("hover is false");
+            }   
         }
     }
-
 }

@@ -1,4 +1,5 @@
 sceneSetups:
-- path: Assets/Checkpoint.unity
+- path: C:/Users/mbrooks7/Documents/HorrorGame-Scripts/Flashlight script/Assets/Flashlight
+    script scene.unity
   isLoaded: 1
   isActive: 1

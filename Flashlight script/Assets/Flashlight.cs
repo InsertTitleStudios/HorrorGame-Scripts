@@ -38,9 +38,9 @@ public class Flashlight : MonoBehaviour
 	void Update ()
     { _batteryBarLength = (Screen.width / 4) * (_currentBatteryPower / (float) _maximumBatteryPower);
 
-       // if (Input.GetButtonDown("Flashlight"))
-      //  { //GetComponent<AudioSource>().PlayOneShot(_switch);
-            //flashlight.enabled = !flashlight.enabled; }
+        if (Input.GetButtonDown("Flashlight"))
+        { //GetComponent<AudioSource>().PlayOneShot(_switch);
+            flashlight.enabled = !flashlight.enabled; }
 
         if (flashlight.enabled)
         { FlashlightOn(); }

@@ -323,6 +323,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1259142912}
   - 108: {fileID: 1259142914}
+  - 64: {fileID: 1259142913}
   m_Layer: 0
   m_Name: Spotlight
   m_TagString: Untagged
@@ -343,6 +344,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 546859968}
   m_RootOrder: 0
+--- !u!64 &1259142913
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1259142911}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_Mesh: {fileID: 0}
 --- !u!108 &1259142914
 Light:
   m_ObjectHideFlags: 0
