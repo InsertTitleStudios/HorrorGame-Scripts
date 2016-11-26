@@ -24,13 +24,22 @@ public class Flashlight : MonoBehaviour
     public float _highDrainBatterySpeed = 5f;
 
     public float _batteryBarLength;
+    public bool _modeChange = false;
 
     public float _maxFlickerSpeed = 1f;
     public float _minFlickerSpeed = 0.1f;
 
+   // public GameObject _lowIntensityBeam;
+   // public GameObject _highIntensityBeam;
+
     // Use this for initialization
     void Start()
     { flashlight = GetComponentInChildren<Light>();
+     //   _lowIntensityBeam = GetComponentInChildren<GameObject>();
+       // _highIntensityBeam = GetComponentInChildren<GameObject>();
+        //_lowIntensityBeam.gameObject.SetActive(false);
+        //_highIntensityBeam.gameObject.SetActive(false);
+
         flashlight.enabled = false;
         _currentBatteryPower = _maximumBatteryPower; }
 	
@@ -43,21 +52,46 @@ public class Flashlight : MonoBehaviour
             flashlight.enabled = !flashlight.enabled; }
 
         if (flashlight.enabled)
-        { FlashlightOn(); }
+        { FlashlightOn();
+          //  _lowIntensityBeam.gameObject.SetActive(true);
+        }
 
         if (_currentBatteryPower == 0)
         { StopCoroutine("FlashlightModifier");
-            flashlight.enabled = false; }}
+            flashlight.enabled = false;
+            //_lowIntensityBeam.gameObject.SetActive(false);
+            //_highIntensityBeam.gameObject.SetActive(false);
+        } }
 
     private void FlashlightOn()
     { if (Input.GetMouseButton(1) && flashlight.enabled == true)
-        { flashlight.intensity = _highPowerIntensityMode;
-            flashlight.spotAngle = _highPowerSpotAngle;
-            flashlight.range = _highPowerRange; }
-        else
-        { flashlight.intensity = _lowPowerIntensityMode;
-            flashlight.spotAngle = _lowPowerSpotAngle;
-            flashlight.range = _lowPowerRange; }
+        {
+            if (_modeChange == false)
+            {
+                _modeChange = true;
+                flashlight.intensity = _highPowerIntensityMode;
+                flashlight.spotAngle = _highPowerSpotAngle;
+                flashlight.range = _highPowerRange;
+                // _lowIntensityBeam.gameObject.SetActive(false);
+                //_highIntensityBeam.gameObject.SetActive(true);
+            }
+
+        }
+        else if (Input.GetMouseButton(1) && flashlight.enabled)
+        {
+            if (_modeChange == true)
+            {
+                _modeChange = false;
+                flashlight.intensity = _lowPowerIntensityMode;
+                flashlight.spotAngle = _lowPowerSpotAngle;
+                flashlight.range = _lowPowerRange;
+                //_lowIntensityBeam.gameObject.SetActive(true);
+                //_highIntensityBeam.gameObject.SetActive(false);
+
+            }
+
+
+        }
 
         if (flashlight.enabled)
         { _currentBatteryPower -= _lowDrainBatterySpeed * Time.deltaTime; }
