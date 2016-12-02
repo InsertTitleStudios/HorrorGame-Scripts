@@ -31,12 +31,8 @@ public class RayCast_Pickup_Items : MonoBehaviour
             Debug.DrawRay(ray.origin, ray.direction, Color.green);
             if (canHover == true)
             {
-                //Debug.Log("canHover is true");
-
                 if (hit.collider.tag == "Matchbox" || hit.collider.tag == "Battery")
                 {
-                    // Debug.Log("I hit: " + hit.collider.tag);
-                    Debug.Log("I'm looking at matchbox");
                     _HandImage.SetActive(true);
                     _CrossHairImage.SetActive(false);
 
@@ -48,7 +44,6 @@ public class RayCast_Pickup_Items : MonoBehaviour
                             canHover = false;
                             _HandImage.SetActive(false);
                             _CrossHairImage.SetActive(true);
-
                         }
                         else if (hit.collider.tag == "Battery")
                         {
@@ -59,10 +54,8 @@ public class RayCast_Pickup_Items : MonoBehaviour
                         }
                     }
                 }
-
-                else// if (hoverHit.collider.tag != "MatchBox" || hoverHit.collider.tag != "Battery")
+                else
                 {
-                    //Debug.Log("I'm looking at nothing");
                     _HandImage.SetActive(false);
                     _CrossHairImage.SetActive(true);
                 }
