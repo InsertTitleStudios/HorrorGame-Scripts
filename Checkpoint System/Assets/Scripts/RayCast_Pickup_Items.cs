@@ -4,12 +4,9 @@ public class RayCast_Pickup_Items : MonoBehaviour
 {
 
     private float range = 500f;
-    public PickUpMatches _Matchbox;
     public GameObject _HandImage;
     public GameObject _CrossHairImage;
-    public BatteryPickUp _Battery;
     public Camera cam;
-    // public Crosshair_Manager manager;
     public bool canHover = false;
 
     void Start()
@@ -17,11 +14,8 @@ public class RayCast_Pickup_Items : MonoBehaviour
         _CrossHairImage.SetActive(true);
         _HandImage.SetActive(false);
     }
-
-    // Update is called once per frame
     void Update()
     {
-        _Matchbox = FindObjectOfType<PickUpMatches>();
         RaycastHit hit;
         Ray ray = cam.ViewportPointToRay(new Vector2(.5f, .5f));
 
@@ -39,14 +33,14 @@ public class RayCast_Pickup_Items : MonoBehaviour
                     {
                         if (hit.collider.tag == "Matchbox")
                         {
-                            _Matchbox.AddMatch();
+                            hit.collider.gameObject.GetComponent<PickUpMatches>().AddMatch();
                             canHover = false;
                             _HandImage.SetActive(false);
                             _CrossHairImage.SetActive(true);
                         }
                         else if (hit.collider.tag == "Battery")
                         {
-                            _Battery.AddBatteries();
+                            hit.collider.gameObject.GetComponent<BatteryPickUp>().AddBatteries();
                             canHover = false;
                             _HandImage.SetActive(false);
                             _CrossHairImage.SetActive(true);
