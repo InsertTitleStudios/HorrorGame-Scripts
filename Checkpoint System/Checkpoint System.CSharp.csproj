@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\PickUpMatches.cs" />
     <Compile Include="Assets\Scripts\RayCast_Pickup_Items.cs" />
     <Compile Include="Assets\Scripts\Singleton_Crosshair_UI.cs" />
+    <Compile Include="Assets\Scripts\TriggerArea.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />

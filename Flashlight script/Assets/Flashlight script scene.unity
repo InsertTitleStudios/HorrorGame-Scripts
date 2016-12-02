@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692492, g: 0.4967869, b: 0.57508546, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692558, g: 0.49678743, b: 0.57508624, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa87aadc35df5543b41ad0207fcecc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maximumBatteryPower: 100
+  _maximumBatteryPower: 1000
   _currentBatteryPower: 0
   _lowPowerIntensityMode: 3
   _lowPowerSpotAngle: 40
@@ -236,6 +236,8 @@ MonoBehaviour:
   _modeChange: 0
   _maxFlickerSpeed: 1
   _minFlickerSpeed: 0.1
+  _lowIntensityBeam: {fileID: 946770705}
+  _highIntensityBeam: {fileID: 1389329629}
 --- !u!1 &781493871
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,9 +472,18 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f7eb65bc3a267b44eb5166fdfd5863a0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f7eb65bc3a267b44eb5166fdfd5863a0, type: 3}
+      propertyPath: m_TagString
+      value: LowBeam
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2300000, guid: f7eb65bc3a267b44eb5166fdfd5863a0, type: 3}
     - {fileID: 9500000, guid: f7eb65bc3a267b44eb5166fdfd5863a0, type: 3}
+    - {fileID: 3300000, guid: f7eb65bc3a267b44eb5166fdfd5863a0, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: f7eb65bc3a267b44eb5166fdfd5863a0, type: 3}
   m_IsPrefabParent: 0
 --- !u!1 &1389329629 stripped
@@ -696,9 +707,18 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2c8d32e0d120d8048919685d36eecc6a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2c8d32e0d120d8048919685d36eecc6a, type: 3}
+      propertyPath: m_TagString
+      value: HighBeam
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2300000, guid: 2c8d32e0d120d8048919685d36eecc6a, type: 3}
     - {fileID: 9500000, guid: 2c8d32e0d120d8048919685d36eecc6a, type: 3}
+    - {fileID: 3300000, guid: 2c8d32e0d120d8048919685d36eecc6a, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 2c8d32e0d120d8048919685d36eecc6a, type: 3}
   m_IsPrefabParent: 0
 --- !u!1 &2052425977

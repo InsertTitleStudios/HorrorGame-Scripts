@@ -569,16 +569,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 114000010876924836, guid: fa50c128dc913e04e805fdb078352c25,
-        type: 2}
-      propertyPath: _HandImage
-      value: 
-      objectReference: {fileID: 1485207477}
-    - target: {fileID: 114000010876924836, guid: fa50c128dc913e04e805fdb078352c25,
-        type: 2}
-      propertyPath: _CrossHairImage
-      value: 
-      objectReference: {fileID: 1480030410}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa50c128dc913e04e805fdb078352c25, type: 2}
   m_IsPrefabParent: 0
@@ -1017,7 +1007,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1480030409
 RectTransform:
   m_ObjectHideFlags: 0
