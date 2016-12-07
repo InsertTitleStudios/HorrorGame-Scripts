@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour
     public GameObject currentCheckpoint;
     private FirstPersonController player;
     public Checkpoint match;
+    public Flashlight flashlight;
     [HideInInspector]
     public List<PickUpMatches> tempPickedUpMatches;
     public List<BatteryPickUp> tempPickedUpBatteries;
@@ -19,6 +20,7 @@ public class LevelManager : MonoBehaviour
     {
         player.transform.position = currentCheckpoint.transform.position;
         match.respawn = true;
+        flashlight.respawn = true;
         for (int i = tempPickedUpMatches.Count - 1; i >= 0; i--)
         {
             if (tempPickedUpMatches[i].checkpointActivated && tempPickedUpMatches[i].pickedUp)
