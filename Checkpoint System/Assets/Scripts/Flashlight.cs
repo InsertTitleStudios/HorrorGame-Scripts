@@ -30,6 +30,7 @@ public class Flashlight : MonoBehaviour
 
     public bool respawn = false;
     public LevelManager manager;
+    public bool checkpointActivated = false;
 
     public GameObject _lowIntensityBeam;
     public GameObject _highIntensityBeam;
@@ -55,7 +56,10 @@ public class Flashlight : MonoBehaviour
         if (flashlight.enabled)
         {
             FlashlightOn();
-            _tempBatteryPower = _currentBatteryPower;
+            if (checkpointActivated == true)
+            {
+                _tempBatteryPower = _currentBatteryPower;
+            }
             if (_modeChange == false)
             {
                 _lowIntensityBeam.gameObject.SetActive(true);

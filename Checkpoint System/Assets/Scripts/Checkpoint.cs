@@ -12,6 +12,7 @@ public class Checkpoint : MonoBehaviour
     public CanvasGroup canvasGroup = null;   
     public LevelManager levelManager;
     public bool respawn = false;
+    public Flashlight checkpoint;
 
 
     void Start()
@@ -32,6 +33,7 @@ public class Checkpoint : MonoBehaviour
                 gameObject.GetComponentInChildren<Light>().enabled = true;
                 _currentMatches--;
                 tempMatches = _currentMatches;
+                checkpoint.checkpointActivated = true;
                 foreach (PickUpMatches match in levelManager.tempPickedUpMatches)
                 {
                     match.checkpointActivated = true;
