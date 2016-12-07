@@ -8,6 +8,7 @@ public class RayCast_Pickup_Items : MonoBehaviour
     public GameObject _CrossHairImage;
     public Camera cam;
     public bool canHover = false;
+    public PickUpMatches picked;
 
     void Start()
     {

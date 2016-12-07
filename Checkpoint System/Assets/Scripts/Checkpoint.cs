@@ -14,7 +14,7 @@ public class Checkpoint : MonoBehaviour
 
     public Text matches_text;
     public Text _HUD_Text;
-    public CanvasGroup canvasGroup = null;
+    public CanvasGroup canvasGroup = null;   
 
     public LevelManager levelManager;
     public bool respawn = false;
@@ -24,6 +24,7 @@ public class Checkpoint : MonoBehaviour
         levelManager = FindObjectOfType<LevelManager>();
         matches_text.text = "X " + _currentMatches;
         _HUD_Text.text = " ";
+        tempMatches = _currentMatches;
     }
     void Update()
     {
@@ -40,6 +41,14 @@ public class Checkpoint : MonoBehaviour
                 gameObject.GetComponentInChildren<Light>().enabled = true;
                 _currentMatches--;
                 tempMatches = _currentMatches;
+                
+                foreach (PickUpMatches match in levelManager.tempPickedUpMatches)
+                {
+                   // Debug.Log("Haha I'm beingg activated");
+                    match.checkpointActivated = true;
+                }
+
+                //list in here
 
 
                 matches_text.text = "X " + _currentMatches;
@@ -61,6 +70,8 @@ public class Checkpoint : MonoBehaviour
         {
             gameObject.GetComponentInChildren<ParticleSystem>().Stop();
             gameObject.GetComponentInChildren<Light>().enabled = false;
+
+       
         }
 
         if (respawn == true)
