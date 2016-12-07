@@ -6,7 +6,6 @@ public class PickUpMatches : MonoBehaviour
     public LevelManager list;
     public bool pickedUp;
     public bool checkpointActivated;
-
     void Start()
     {
         list = FindObjectOfType<LevelManager>();
@@ -19,19 +18,11 @@ public class PickUpMatches : MonoBehaviour
         GetComponentInChildren<Checkpoint>();
         temp.AddMatches(_matchesAmount);
         gameObject.SetActive(false);
-
         if (pickedUp == false)
         {
             list.tempPickedUpMatches.Add(this);
             pickedUp = true;
         }
-
-        
-
-
-
-
-        //make reference to the list here
     }
 }
 
