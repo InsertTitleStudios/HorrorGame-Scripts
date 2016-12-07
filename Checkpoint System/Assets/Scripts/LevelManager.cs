@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     public Checkpoint match;
     [HideInInspector]
     public List<PickUpMatches> tempPickedUpMatches;
+    public List<BatteryPickUp> tempPickedUpBatteries;
     void Start()
     {
         player = FindObjectOfType<FirstPersonController>();
@@ -27,6 +28,17 @@ public class LevelManager : MonoBehaviour
                 tempPickedUpMatches[i].gameObject.SetActive(true);
                 tempPickedUpMatches[i].pickedUp = false;
                 tempPickedUpMatches.Remove(tempPickedUpMatches[i]);
+            }
+        }
+        for (int i = tempPickedUpBatteries.Count - 1; i >= 0; i--)
+        {
+            if (tempPickedUpBatteries[i].checkpointActivated && tempPickedUpBatteries[i].pickedUp)
+            { }
+            else
+            {
+                tempPickedUpBatteries[i].gameObject.SetActive(true);
+                tempPickedUpBatteries[i].pickedUp = false;
+                tempPickedUpBatteries.Remove(tempPickedUpBatteries[i]);
             }
         }
     }

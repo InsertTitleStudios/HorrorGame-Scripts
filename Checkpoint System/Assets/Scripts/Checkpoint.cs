@@ -12,6 +12,8 @@ public class Checkpoint : MonoBehaviour
     public CanvasGroup canvasGroup = null;   
     public LevelManager levelManager;
     public bool respawn = false;
+
+
     void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
@@ -33,6 +35,10 @@ public class Checkpoint : MonoBehaviour
                 foreach (PickUpMatches match in levelManager.tempPickedUpMatches)
                 {
                     match.checkpointActivated = true;
+                }
+                foreach (BatteryPickUp battery in levelManager.tempPickedUpBatteries)
+                {
+                    battery.checkpointActivated = true;
                 }
                 matches_text.text = "X " + _currentMatches;
             }
